@@ -5,23 +5,12 @@ $accent: #00ff9f;
 $shadow-color: rgba(0, 0, 0, 0.4);
 $hover-shadow: rgba(0, 255, 150, 0.2);
 $gap: 20px;
-
 $rick-green: #00ff9c;
 $morty-yellow: #ffe14d;
 $portal-blue: #00c8ff;
 $dark-bg: #0a0f0d;
 $text-white: #f5f5f5;
 $alert-red: #ff4d4d;
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    background: radial-gradient(circle at 20% 20%, #003, #000 80%);
-    background-attachment: fixed;
-    overflow-x: hidden;
-}
 
 @keyframes pulse-glow {
   0% {
@@ -36,15 +25,25 @@ body {
 }
 
 @keyframes float-logo {
-  0% { transform: translatex(150px) rotate(360deg); }
-  50% { transform: translatex(-150px) rotate(360deg); }
-  100% { transform: translatex(150px) rotate(360deg); }
+  0% { transform: translatex(60px) rotate(360deg); }
+  50% { transform: translatex(-60px) rotate(360deg); }
+  100% { transform: translatex(60px) rotate(360deg); }
 }
 
 @keyframes portal-pulse {
   0% { box-shadow: 0 0 15px rgba($rick-green, 0.3), 0 0 40px rgba($portal-blue, 0.3); }
   50% { box-shadow: 0 0 30px rgba($rick-green, 0.8), 0 0 60px rgba($portal-blue, 0.6); }
   100% { box-shadow: 0 0 15px rgba($rick-green, 0.3), 0 0 40px rgba($portal-blue, 0.3); }
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background: radial-gradient(circle at 20% 20%, #003, #000 80%);
+    background-attachment: fixed;
+    overflow-x: hidden;
 }
 
 header {
@@ -116,57 +115,6 @@ footer {
   background-color: $bg-color;
   min-height: 100vh;
 }
-
-.character-card {
-  background-color: $card-bg;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px $shadow-color;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  text-align: center;
-
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 16px 16px 16px $hover-shadow;
-
-    .character-image {
-      filter: brightness(1.1);
-      transition: filter 0.5s ease;
-    }
-  }
-
-  .character-image-container {
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-
-    .character-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-
-  .character-info {
-    padding: 15px;
-    color: $text-color;
-
-    .character-name {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: $accent;
-    }
-
-    .character-gender {
-      font-size: 1rem;
-      color: lighten($text-color, 20%);
-      margin: 0;
-    }
-  }
-}
-
 
 .search-container {
   display: flex;
@@ -314,6 +262,56 @@ footer {
       color: $portal-blue;
       font-style: italic;
       font-weight: 600;
+    }
+  }
+}
+
+.character-card {
+  background-color: $card-bg;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px $shadow-color;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 16px 16px $hover-shadow;
+
+    .character-image {
+      filter: brightness(1.1);
+      transition: filter 0.5s ease;
+    }
+  }
+
+  .character-image-container {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+
+    .character-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .character-info {
+    padding: 15px;
+    color: $text-color;
+
+    .character-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: $accent;
+    }
+
+    .character-gender {
+      font-size: 1rem;
+      color: lighten($text-color, 20%);
+      margin: 0;
     }
   }
 }
