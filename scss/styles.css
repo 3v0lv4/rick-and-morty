@@ -3,6 +3,9 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
+  background: radial-gradient(circle at 20% 20%, #003, #000 80%);
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 header {
@@ -85,4 +88,69 @@ footer .info {
   font-size: 1rem;
   color: white;
   margin: 0;
+}
+
+.details-container {
+  background: radial-gradient(circle at top, #101820, #0a0f0d 80%);
+  border: 2px solid #00ff9c;
+  border-radius: 20px;
+  padding: 2rem;
+  color: #f5f5f5;
+  font-family: "Orbitron", sans-serif;
+  text-align: center;
+  max-width: 450px;
+  margin: 2rem auto;
+  box-shadow: 0 0 20px rgba(0, 255, 156, 0.6);
+  transition: all 0.4s ease;
+}
+.details-container:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 40px rgba(0, 255, 156, 0.9);
+}
+.details-container h2 {
+  font-size: 2rem;
+  color: #00ff9c;
+  text-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
+  margin-bottom: 1rem;
+}
+.details-container .details-image {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 3px solid #00c8ff;
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.6);
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+.details-container .details-image:hover {
+  transform: rotate(5deg) scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 255, 156, 0.8);
+}
+.details-container p {
+  font-size: 1.1rem;
+  margin: 0.4rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  box-shadow: inset 0 0 5px rgba(0, 255, 156, 0.3);
+}
+.details-container p strong {
+  color: #ffe14d;
+  text-shadow: 0 0 5px rgba(255, 225, 77, 0.8);
+}
+.details-container p.specie {
+  color: #00ff9c;
+}
+.details-container p.gender {
+  color: #00c8ff;
+}
+.details-container p.origen {
+  color: rgb(255, 233.595505618, 128);
+}
+.details-container p.status {
+  color: #00ff9c;
+}
+.details-container p.episode {
+  color: #00c8ff;
+  font-style: italic;
 }/*# sourceMappingURL=styles.css.map */

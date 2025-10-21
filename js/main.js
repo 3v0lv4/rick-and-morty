@@ -60,16 +60,44 @@ const loadCharacters = async () => {
 }
 
 const showCharacterDetails = (details) => {
+    /*
+    const card = document.createElement("div");
+    card.classList.add("details-card");
+
+    const infoDiv = document.createElement("div")
+    infoDiv.classList.add("character-info")
+
+    const name = document.createElement("h1");
+    name.classList.add("character-name")
+    name.textContent = character.name
+
+    const gender = document.createElement("h2");
+    gender.classList.add("character-gender")
+    gender.textContent = character.gender;
+
+    const imageContainer = document.createElement("div");
+    imageContainer.classList.add("character-image-container");
+
+    const image = document.createElement("img");
+    image.classList.add("character-image");
+    image.src = character.image;
+    image.alt = character.name;
+    */
     // Aquí puedes personalizar cómo mostrar los detalles. Por ejemplo:
     const detailsContainer = document.getElementById("character-details");
     detailsContainer.innerHTML = `
         <h2>${details.name}</h2>
-        <p><strong>Especie:</strong> ${details.species}</p>
-        <p><strong>Género:</strong> ${details.gender}</p>
-        <p><strong>Origen:</strong> ${details.origin.name}</p>
-        <p><strong>Estado:</strong> ${details.status}</p>
-        <!-- Agrega tus detalles adicionales aquí -->
-    `;
+        <div class="image-wrapper">
+            <img src="${details.image}" alt="imagen" class="details-image">
+        </div>
+        <p class="specie"><strong>Especie:</strong> ${details.species}</p>
+        <p class="genero"><strong>Género:</strong> ${details.gender}</p>
+        <p class="origen"><strong>Origen:</strong> ${details.origin.name}</p>
+        <p class="estado"><strong>Estado:</strong> ${details.status}</p>
+        <p class="episode"><strong>Primer episodio:</strong> ${details.episode[0]}</p>
+    `
+    
+    ;
     detailsContainer.style.display = 'block'; // Asegúrate de que se muestre
 };
 
