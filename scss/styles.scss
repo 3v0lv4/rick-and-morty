@@ -23,10 +23,22 @@ body {
     overflow-x: hidden;
 }
 
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 10px rgba($rick-green, 0.3), inset 0 0 5px rgba($portal-blue, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba($rick-green, 0.8), inset 0 0 10px rgba($portal-blue, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba($rick-green, 0.3), inset 0 0 5px rgba($portal-blue, 0.2);
+  }
+}
+
 @keyframes float-logo {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(2deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
+  0% { transform: translatex(150px) rotate(360deg); }
+  50% { transform: translatex(-150px) rotate(360deg); }
+  100% { transform: translatex(150px) rotate(360deg); }
 }
 
 @keyframes portal-pulse {
@@ -69,7 +81,7 @@ header {
     max-width: 80%;
     z-index: 1;
     position: relative;
-    animation: float-logo 3.5s ease-in-out infinite;
+    animation: float-logo 6s ease-in-out infinite;
     filter: drop-shadow(0 0 10px rgba($rick-green, 0.8))
             drop-shadow(0 0 20px rgba($portal-blue, 0.6));
     transition: transform 0.3s ease, filter 0.3s ease;
@@ -155,17 +167,6 @@ footer {
   }
 }
 
-@keyframes pulse-glow {
-  0% {
-    box-shadow: 0 0 10px rgba($rick-green, 0.3), inset 0 0 5px rgba($portal-blue, 0.2);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba($rick-green, 0.8), inset 0 0 10px rgba($portal-blue, 0.5);
-  }
-  100% {
-    box-shadow: 0 0 10px rgba($rick-green, 0.3), inset 0 0 5px rgba($portal-blue, 0.2);
-  }
-}
 
 .search-container {
   display: flex;
@@ -312,6 +313,7 @@ footer {
     &.episode {
       color: $portal-blue;
       font-style: italic;
+      font-weight: 600;
     }
   }
 }
