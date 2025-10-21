@@ -14,11 +14,23 @@
     </header>
 </header>
 <main>
+    <div class="search-container">
+        <input type="text" id="character-search" placeholder="Buscar personaje">
+        <button id="search-button">Buscar</button>
+    </div>
+
     <div id="character-details" class="details-container"></div>
 
     <div class="card-grid" id="character-grid">
 
     </div>
+
+    <div class="pagination">
+        <button id="prev-button" class="page-btn">Anterior</button>
+        <span id="page-number">Página: <span id="current-page">1</span></span>
+        <button id="next-button" class="page-btn">Siguiente</button>
+    </div>
+
 </main>
 <footer>
     <section>

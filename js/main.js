@@ -59,31 +59,49 @@ const loadCharacters = async () => {
     }
 }
 
+let currentPage = 1;
+
+const chargeCharacters = async (page = 1) => {
+  const characterGrid = document.getElementById("character-grid");
+  characterGrid.innerHTML = ``;
+
+  try {
+    const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
+    const data = await response.json();
+
+    characterGrid.innerHTML = ""; // Limpiar el grid
+
+    data.results.forEach((character) => {
+      const card = createCharacterCard(character);
+      characterGrid.appendChild(card);
+    });
+
+    // Actualizar botones
+    document.getElementById("prev-button").disabled = !data.info.prev;
+    document.getElementById("next-button").disabled = !data.info.next;
+
+  } catch (error) {
+    console.error("Error al cargar los personajes:", error);
+    characterGrid.innerHTML = `<p class="error">Ocurrió un error al cargar los personajes.</p>`;
+  }
+};
+
+// 🚀 Navegación entre páginas
+document.getElementById("next-button").addEventListener("click", () => {
+  currentPage++;
+  chargeCharacters(currentPage);
+});
+
+document.getElementById("prev-button").addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    chargeCharacters(currentPage);
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => loadCharacters(currentPage));
+
 const showCharacterDetails = (details) => {
-    /*
-    const card = document.createElement("div");
-    card.classList.add("details-card");
-
-    const infoDiv = document.createElement("div")
-    infoDiv.classList.add("character-info")
-
-    const name = document.createElement("h1");
-    name.classList.add("character-name")
-    name.textContent = character.name
-
-    const gender = document.createElement("h2");
-    gender.classList.add("character-gender")
-    gender.textContent = character.gender;
-
-    const imageContainer = document.createElement("div");
-    imageContainer.classList.add("character-image-container");
-
-    const image = document.createElement("img");
-    image.classList.add("character-image");
-    image.src = character.image;
-    image.alt = character.name;
-    */
-    // Aquí puedes personalizar cómo mostrar los detalles. Por ejemplo:
     const detailsContainer = document.getElementById("character-details");
     detailsContainer.innerHTML = `
         <h2>${details.name}</h2>
@@ -98,37 +116,33 @@ const showCharacterDetails = (details) => {
     `
     
     ;
-    detailsContainer.style.display = 'block'; // Asegúrate de que se muestre
-};
+    detailsContainer.style.display = 'block'
+}
 
-/*
-const showCharacterDetails = (details) => {
-    const detailsContainer = document.createElement("div");
-    detailsContainer.classList.add("character-details")
-    
-    const infoDiv = document.createElement("div")
-    infoDiv.classList.add("character-info")
-
-    const name = document.createElement("h1");
-    name.classList.add("character-name")
-    name.textContent = details.name
-
-    const gender = document.createElement("h2");
-    gender.classList.add("character-gender")
-    gender.textContent = details.gender;
-
-    const imageContainer = document.createElement("div");
-    imageContainer.classList.add("character-image-container");
-
-    const image = document.createElement("img");
-    image.classList.add("character-image");
-    image.src = details.image;
-    image.alt = details.name;
-
-    detailsContainer.style.display= "block";
-};
-*/
 document.addEventListener("DOMContentLoaded", loadCharacters);
+
+const searchCharacter = async () => {
+    const characterName = document.getElementById('character-search').value.toLowerCase();
+    if (characterName) {
+        try {
+            const response = await axios.get(`https://rickandmortyapi.com/api/character/${characterName}`);
+            const characterGrid = document.getElementById("character-grid");
+            characterGrid.innerHTML = '';
+            const detailsContainer = showCharacterDetails(response.data);
+            characterGrid.appendChild(detailsContainer);
+        }catch (error) {
+            console.warn('Error al buscar el personaje: ', error);
+        }
+    }
+};
+
+document.getElementById('search-button').addEventListener('click', searchCharacter);
+document.getElementById('character-search').addEventListener('keypress', function (e) {
+    if(e.key === 'Enter') {
+        console.log("search")
+        searchCharacter();
+    }
+});
 
 /*
 const loadCharacters = async () => {
