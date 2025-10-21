@@ -26,11 +26,10 @@ const createCharacterCard = (character) => {
         const detailsData = await detailsResponse.json();
 
         showCharacterDetails(detailsData)
-        console.log(detailsData)
     })
 
     infoDiv.appendChild(name)
-    infoDiv.appendChild(gender);
+    infoDiv.appendChild(gender)
     imageContainer.appendChild(image)
 
     card.appendChild(infoDiv)
@@ -62,41 +61,42 @@ const loadCharacters = async () => {
 let currentPage = 1;
 
 const chargeCharacters = async (page = 1) => {
-  const characterGrid = document.getElementById("character-grid");
-  characterGrid.innerHTML = ``;
+    const characterGrid = document.getElementById("character-grid");
+    const currentPageSpan = document.getElementById("current-page")
+    characterGrid.innerHTML = ``;
 
-  try {
-    const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
-    const data = await response.json();
+    try {
+        const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
+        const data = await response.json();
 
-    characterGrid.innerHTML = ""; // Limpiar el grid
+        characterGrid.innerHTML = "";
 
-    data.results.forEach((character) => {
-      const card = createCharacterCard(character);
-      characterGrid.appendChild(card);
-    });
+        data.results.forEach((character) => {
+        const card = createCharacterCard(character);
+        characterGrid.appendChild(card);
+        });
 
-    // Actualizar botones
-    document.getElementById("prev-button").disabled = !data.info.prev;
-    document.getElementById("next-button").disabled = !data.info.next;
+        currentPage = page;
+        currentPageSpan.textContent = currentPage;
 
-  } catch (error) {
-    console.error("Error al cargar los personajes:", error);
-    characterGrid.innerHTML = `<p class="error">Ocurrió un error al cargar los personajes.</p>`;
-  }
+        document.getElementById("prev-button").disabled = !data.info.prev;
+        document.getElementById("next-button").disabled = !data.info.next;
+
+    } catch (error) {
+        console.error("Error al cargar los personajes:", error);
+    }
 };
 
-// 🚀 Navegación entre páginas
 document.getElementById("next-button").addEventListener("click", () => {
-  currentPage++;
-  chargeCharacters(currentPage);
+    currentPage++;
+    chargeCharacters(currentPage);
 });
 
 document.getElementById("prev-button").addEventListener("click", () => {
-  if (currentPage > 1) {
-    currentPage--;
-    chargeCharacters(currentPage);
-  }
+    if (currentPage > 1) {
+        currentPage--;
+        chargeCharacters(currentPage);
+    }
 });
 
 document.addEventListener("DOMContentLoaded", () => loadCharacters(currentPage));
@@ -114,12 +114,9 @@ const showCharacterDetails = (details) => {
         <p class="status"><strong>Estado:</strong> ${details.status}</p>
         <p class="episode"><strong>Primer episodio:</strong> ${details.episode[0]}</p>
     `
-    
     ;
     detailsContainer.style.display = 'block'
 }
-
-document.addEventListener("DOMContentLoaded", loadCharacters);
 
 const searchCharacter = async () => {
     const characterName = document.getElementById('character-search').value.toLowerCase();
@@ -144,30 +141,3 @@ document.getElementById('character-search').addEventListener('keypress', functio
     }
 });
 
-/*
-const loadCharacters = async () => {
-    try {
-        const response = await fetch(URL)
-        const data = await response.json();
-    }catch (error) {
-        console.warn("error de fetch", error)
-    }
-}
-
-loadCharacters();
-*/
-
-
-
-/*
-fetch(URL)
-    .then(res => res.json())
-    .then(data => {
-        const name = document.querySelector('h2');
-        name.textContent = data.name
-        console.log(name)
-
-        const gender = document.querySelector('p');
-        gender.textContent = data.gender
-        });}
-*/
