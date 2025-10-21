@@ -91,9 +91,9 @@ const showCharacterDetails = (details) => {
             <img src="${details.image}" alt="imagen" class="details-image">
         </div>
         <p class="specie"><strong>Especie:</strong> ${details.species}</p>
-        <p class="genero"><strong>Género:</strong> ${details.gender}</p>
+        <p class="gender"><strong>Género:</strong> ${details.gender}</p>
         <p class="origen"><strong>Origen:</strong> ${details.origin.name}</p>
-        <p class="estado"><strong>Estado:</strong> ${details.status}</p>
+        <p class="status"><strong>Estado:</strong> ${details.status}</p>
         <p class="episode"><strong>Primer episodio:</strong> ${details.episode[0]}</p>
     `
     
